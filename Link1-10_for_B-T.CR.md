@@ -3,6 +3,7 @@
 Related to the post at [here on B-T.CR](http://b-t.cr/t/looking-for-one-set-of-a-bcrs-full-gdna-mrna-amino-acid-and-structure-data/197).
 
 
+
 Link1: [http://www.ncbi.nlm.nih.gov/protein/58760229](http://www.ncbi.nlm.nih.gov/protein/58760229)
 
 Link2: [http://www.ncbi.nlm.nih.gov/protein/58760227](http://www.ncbi.nlm.nih.gov/protein/58760227)
