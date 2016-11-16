@@ -1,13 +1,13 @@
 
 This post tells how to install TPP v5.0.0 ([SourceForge](https://sourceforge.net/projects/sashimi/), [Wiki](http://tools.proteomecenter.org/wiki/index.php?title=Software:TPP)) on Ubuntu 16.04.1 LTS Linux. It follows the guide by the author, gets errors, and tells solutions. 
 
-######1. Get TPP v5 source file 
+###1. Get TPP v5 source file 
 1. Download TPP_5.0.0-src.tgz from [here](https://sourceforge.net/projects/sashimi/files/Trans-Proteomic%20Pipeline%20%28TPP%29/TPP%20v5.0%20%28Typhoon%29%20rev%200/).
 2. Unzip it by `tar -zxf TPP_5.0.0-src.tgz`
 3. Move to the unzipped directory `cd TPP_5.0.0-src/`
 Read `README`, read `BUILD_LINUX`. One can use `cat README` print the file.
 
-######2. Follow the `Prerequisites` section in `BUILD_LINUX` and install the required software and libraries.
+###2. Follow the `Prerequisites` section in `BUILD_LINUX` and install the required software and libraries.
 First, `sudo apt-get update`
 
 1.  g++, Ubuntu should have it. `g++ --version` to check it. Mine is "g++ (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609"
@@ -20,7 +20,7 @@ First, `sudo apt-get update`
   2. libpng, the same as libgd2. I chose libpng12-dev. (I do not know the differences among all the output in search. Seems libpng16-dev is the latest one, but latest sometimes encounter compatiblity problems, so I chose libpng12-dev. If not right, correct me. Thx!) `sudo apt-get install libpng12-dev` to install.
  3. The same for the other two, "zlib" and "libbz2". I use `sudo apt-get install zlib1g-dev` to install zlib, (Courtesy of [hwez](http://askubuntu.com/questions/508934/how-to-install-libpng-and-zlib/508937 )), and `sudo apt-get install libbz2-dev` to install libbz2.
 
-######3. Configuring
+###3. Configuring
 Follow `BUILD_LINUX`. In dir `TPP_5.0.0-src`, create a file named `site.mk` and put your configuration info there. Command and content I use: 
 command `vi site.mk`
 content in "site.mk"
@@ -29,7 +29,7 @@ content in "site.mk"
     BASE_URL = /tpp
     TPP_DATA = /usr/tpp_install/tpp/data
 
-#####4. Building
+###4. Building
 In dir `TPP_5.0.0-src`, execute `sudo make all`.
 Get error:
 ```
@@ -62,7 +62,7 @@ All command are supposed to be executed in dir `TPP_5.0.0-src`.
         extern/Makefile:262: recipe for target '/home/roden/proteomics/bin/TPP_install/TPP_5.0.0-src/build/gnu-x86_64/lib/libboost_thread.a' failed
         make: *** [/home/roden/proteomics/bin/TPP_install/TPP_5.0.0-src/build/gnu-x86_64/lib/libboost_thread.a] Error 1
 
-######5. Replace the boost lib
+###5. Replace the boost lib
 Regarding the above error, I found a [hint](https://groups.google.com/forum/#!searchin/spctools-discuss/has_icu$20builds$20$20$20$20$20$20$20$20$20$20$20$3A$20no$20%7Csort:relevance/spctools-discuss/iBLsDJLy5Vo/T_dxXZAISYcJ) (Courtesy of Jagan Kommineni  and bmcnally) and fixed it in a different manner. I actually followed the solution first, installed the newest [boost](http://www.boost.org/users/history/version_1_62_0.html) libraries. But it seems that the `make` logic has been changed in TPP5.0.0. I do not know where to indicate making process to use the boost I installed like Jagan used in the hint link. I directly copied the libboost_thread.a from the boost lib I installed to dir `TPP_5.0.0-src/build/gnu-x86_64/lib/`, I could  get rid of the above error. But there were other errors coming later. After two more errors (I will mention it in another post.) by solving it this way (copying the required files), I started trying the another way in my mind, replacing the boost library source file in TPP\_5.0.0-src. Here are the steps.
 
 All command are supposed to be executed in dir `TPP_5.0.0-src`.
@@ -85,7 +85,7 @@ All command are supposed to be executed in dir `TPP_5.0.0-src`.
 
 4. `sudo make all` GOES LIKE A MAGIC. (Takes about 20min)
 
-#####4. Installing
+###4. Installing
 All command are supposed to be executed in dir `TPP_5.0.0-src`.
 
 1. `sudo make install` gets error:
@@ -109,7 +109,7 @@ All command are supposed to be executed in dir `TPP_5.0.0-src`.
               LIBPNG_CONFIG=/usr/local/bin/libpng-config
   9. `sudo make install` goes smoothly.
 
-#####5. Test the tools
+###5. Test the tools
 The reason I need to install TPP is that I need to run `xinteract -OA -PPM -Nbasename basename.pep.xml`. Now that I have tpp installed. So I test it. I get this error.
 
 ```
@@ -121,7 +121,7 @@ Follow [this](http://www.cpan.org/modules/INSTALL.html) (Courtesy of CPAN) to in
 
 Then I am able to see "job completed in 26 sec". May be there are other compatibility issues. But for now, the command line functions I need run well. Then let's take a look at the web GUI.
 
-######6. Configure Web GUI
+###6. Configure Web GUI
 1. Install apache2. `sudo apt-get install apache2`. The version I got installed is "2.4.18-2ubuntu3.1". Follow [this](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-16-04). (Courtesy of Brennen Bearnes) Remember add one line "ServerName server\_domain\_or\_IP" to `/etc/apache2/apache2.conf` file to suppress a warning message as the link mentioned. 
 2. Add the `httpd-tpp.conf` to the right place
   1. `cd /etc/apache2/sites-available`
@@ -203,7 +203,7 @@ Then I am able to see "job completed in 26 sec". May be there are other compatib
   18. Insight from [this](http://stackoverflow.com/questions/14792978/perl-apache-perl-script-displayed-as-plain-text) (Courtesy of user966588). `sudo a2enmod cgi`, and `sudo service apache2 restart`. Visit `http://YOUr_Server_IP/tpp/cgi-bin/tpp_gui.pl` again. Get something, but not perfect. Use guest; guest to login, it goes to `http://YOUr_Server_IP/tpp/cgi-bin/tpp/cgi-bin/tpp_gui.pl`
 ![](https://github.com/RodenLuo/Public_Materials/blob/master/image/QQ20161115-0.png)
 
-######7. Configure Web GUI Cont'd (Path issues)
+###7. Configure Web GUI Cont'd (Path issues)
 Check the error above, We can know that it is because wrongly used path. It recognized as relative path, but it should be absolute path. Below is the solution. (My debugging route. At first I thought this is the problem of the configuration of apache2 because I knew that on Windows it works well. I tried to find ways to tell apaches2 should use absolute path but failed. Then I checked file "tpp\_gui.pl", looked up "images/isb\_logo.png", then looked up "tpp\_html\_url", then went to "tpp/lib/tpplib\_perl.pm", looked up "getHtmlUrl", then "\_lookup", then I noticed "$ENV{TPP\_HOME}". Then I realized SetEnv stuffs in httpd-tpp.conf file. Then somehow I noticed that I made "SetEnv TPP\_BASEURL tpp" and "#SetEnv TPP\_DATAURL tpp/data" in effect in step 6.12 and thought it should be "/tpp" and "/tpp/data", so I added the forward slash, "/". It turned out working. But when I commented them out, it also worked. So here I use the setting come with the TPP 5.0.0 release, comment out the two lines. This took me about 6 hours :( to find it.)
 
 1. `sudo vi httpd-tpp.conf`, comment out two lines.
@@ -222,7 +222,7 @@ Error msg:
     CANNOT_CREATE_SESSION_FILE:/usr/tpp_install/tpp/users/guest/session_ADUDH5YTX:Permission denied: A fatal error has been encountered.
     NOLOGFILE: Cannot open /usr/tpp_install/tpp/log/tpp_web.log for writing: Permission denied 
 
-######8. Configure Web GUI Cont'd (Rights issues and others)
+###8. Configure Web GUI Cont'd (Rights issues and others)
 1. check log `sudo cat /var/log/apache2/tpp_error.log`. It says:
 
         touch: cannot touch '/usr/tpp_install/tpp/log/tpp_web.log': Permission denied
