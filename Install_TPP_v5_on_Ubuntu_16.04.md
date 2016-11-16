@@ -1,5 +1,7 @@
 
-This post tells how to install TPP v5.0.0 ([SourceForge](https://sourceforge.net/projects/sashimi/), [Wiki](http://tools.proteomecenter.org/wiki/index.php?title=Software:TPP)) on Ubuntu 16.04.1 LTS Linux. It follows the guide by the author, gets errors, and tells solutions. [Here](https://groups.google.com/forum/#!topic/spctools-discuss/oKBB1lSk894) is a short description of it. (Caution: By following it, One should be able to install TPPv5 and use most (maybe all) of the function, but one will get an error when view the pep.xml by PepXML Viewer. I mentioned this error [here](https://groups.google.com/forum/#!topic/spctools-discuss/kS1bcTDWEJQ). Hope you can help.)
+This post tells how to install TPP v5.0.0 ([SourceForge](https://sourceforge.net/projects/sashimi/), [Wiki](http://tools.proteomecenter.org/wiki/index.php?title=Software:TPP)) on Ubuntu 16.04.1 LTS Linux. It follows the guide by the author, gets errors, and tells solutions. [Here](https://groups.google.com/forum/#!topic/spctools-discuss/oKBB1lSk894) is a short description of it. 
+
+Caution: By following it, One should be able to install TPPv5 and use most (maybe all) of the function, but one will get an error when view the .pep.xml file by PepXML Viewer. I mentioned this error [here](https://groups.google.com/forum/#!topic/spctools-discuss/kS1bcTDWEJQ). Hope you can help.
 
 ###1. Get TPP v5 source file 
 1. Download TPP_5.0.0-src.tgz from [here](https://sourceforge.net/projects/sashimi/files/Trans-Proteomic%20Pipeline%20%28TPP%29/TPP%20v5.0%20%28Typhoon%29%20rev%200/).
