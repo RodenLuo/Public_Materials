@@ -201,7 +201,7 @@ Then I am able to see "job completed in 26 sec". May be there are other compatib
             #!/usr/bin/perl
 
   18. Insight from [this](http://stackoverflow.com/questions/14792978/perl-apache-perl-script-displayed-as-plain-text) (Courtesy of user966588). `sudo a2enmod cgi`, and `sudo service apache2 restart`. Visit `http://YOUr_Server_IP/tpp/cgi-bin/tpp_gui.pl` again. Get something, but not perfect. Use guest; guest to login, it goes to `http://YOUr_Server_IP/tpp/cgi-bin/tpp/cgi-bin/tpp_gui.pl`
-![](/content/images/2016/11/QQ20161115-0.png)
+![](https://github.com/RodenLuo/Public_Materials/blob/master/image/QQ20161115-0.png)
 
 ######7. Configure Web GUI Cont'd (Path issues)
 Check the error above, We can know that it is because wrongly used path. It recognized as relative path, but it should be absolute path. Below is the solution. (My debugging route. At first I thought this is the problem of the configuration of apache2 because I knew that on Windows it works well. I tried to find ways to tell apaches2 should use absolute path but failed. Then I checked file "tpp\_gui.pl", looked up "images/isb\_logo.png", then looked up "tpp\_html\_url", then went to "tpp/lib/tpplib\_perl.pm", looked up "getHtmlUrl", then "\_lookup", then I noticed "$ENV{TPP\_HOME}". Then I realized SetEnv stuffs in httpd-tpp.conf file. Then somehow I noticed that I made "SetEnv TPP\_BASEURL tpp" and "#SetEnv TPP\_DATAURL tpp/data" in effect in step 6.12 and thought it should be "/tpp" and "/tpp/data", so I added the forward slash, "/". It turned out working. But when I commented them out, it also worked. So here I use the setting come with the TPP 5.0.0 release, comment out the two lines. This took me about 6 hours :( to find it.)
