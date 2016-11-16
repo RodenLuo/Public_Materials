@@ -212,10 +212,10 @@ Check the error above, We can know that it is because wrongly used path. It reco
         # SetEnv TPP_BASEURL tpp
         # SetEnv TPP_DATAURL tpp/data
 2. Visit `http://YOUr_Server_IP/tpp/cgi-bin/tpp_gui.pl`. Then it seems going well.
-![](/content/images/2016/11/QQ20161115-1.png)
+![](https://github.com/RodenLuo/Public_Materials/blob/master/image/QQ20161115-1.png)
 
 But when I loged into it. It showed as:
-![](/content/images/2016/11/QQ20161115-2.png)
+![](https://github.com/RodenLuo/Public_Materials/blob/master/image/QQ20161115-2.png)
 
 Error msg:
 
