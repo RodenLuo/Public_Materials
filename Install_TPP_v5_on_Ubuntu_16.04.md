@@ -238,11 +238,11 @@ Error msg:
         Can't locate FindBin/libs.pm in @INC (you may need to install the FindBin::libs module) (@INC contains: /usr/tpp_install/tpp/lib/perl /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.22.1 /usr/local/share/perl/5.22.1 /usr/lib/x86_64-linux-gnu/perl5/5.22 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.22 /usr/share/perl/5.22 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .) at /usr/tpp_install/tpp/bin/tpp_models.pl line 34.
         BEGIN failed--compilation aborted at /usr/tpp_install/tpp/bin/tpp_models.pl line 34.
 
-5. This is rather weird, because I have installed FindBin::libs it in step 5. I guess may be resulted from some version compatibility issues, or the perl apache used it not the same as I used in step 5. Anyway, I create a short link for it.
+5. This is rather weird, because I have installed FindBin::libs it in step 5. I guess may be resulted from some version compatibility issues, or the perl apache used is not the same as I used in step 5. Anyway, I create a short link for it.
   1. `cd /usr/share/perl/5.22`
   2. `sudo mkdir FindBin`, `cd FindBin`
   3. `sudo ln -s ../FindBin.pm libs.pm`
 
-6. Try the pep.xml view in the web GUI. The Error/Warning msg still shows up. But there is no more error in apache2 log file.
+6. Try the pep.xml viewer in the web GUI. The Error/Warning msg still shows up. But there is no more error in apache2 log file.
 
 7. I have checked the source code in `/usr/tpp_install/tpp/html/PepXMLViewer.html`, and added code to check "dateorig" and "lastupdate", they are both "undefined". Since it works well. I'm gonna take it for now. Hope someone can help. Thx!
