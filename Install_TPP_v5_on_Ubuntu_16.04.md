@@ -15,7 +15,7 @@ First, `sudo apt-get update`
 1.  g++, Ubuntu should have it. `g++ --version` to check it. Mine is "g++ (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609"
 2. Perl, should have it. `perl -v` to check. Mine is v5.22.1.
 3. Apache, I will talk about it later.
-4. gnuplot, `gnuplot --version` to check. Mine is "gnuplot 5.0 patchlevel 3". If you do not have it, you should be able to use `apt-cache madison gnuplot` (Courtesy of [lornix](http://superuser.com/questions/393681/how-to-find-out-which-versions-of-a-package-can-i-install-on-apt)) to see what version you can install and use `sudo apt-get install gnuplot` to install it.
+4. gnuplot, `gnuplot --version` to check. Mine is "gnuplot 5.0 patchlevel 3". If you do not have it, you should be able to use `apt-cache madison gnuplot` (Courtesy of [lornix](http://superuser.com/questions/393681/how-to-find-out-which-versions-of-a-package-can-i-install-on-apt)) to see what version you can install and use `sudo apt-get install gnuplot-nox` to install it.
 5. xsltproc, the same as gnuplot.
 6. C/C++ libraries, (I guess the `build` process has not made use of the already installed libraries but use the attached ones in the source file. Because I still got problems related to libraries even after I installed them. Anyway, install then first.)
   1. Use `apt-cache search libgd2` to search libraries. Then choose one output ending with "-dev", for me, I only have "libgd-dev" as output, to install.  As mentioned, use `apt-cache madison libgd-dev` to check package source if you want. `sudo apt-get install libgd-dev` to install it. 
